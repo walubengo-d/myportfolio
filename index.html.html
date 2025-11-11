@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Derick Walubengo | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: #f4f7f9;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: #1E3A8A;
+            color: white;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .sidebar input[type="text"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .nav-links button {
+            padding: 12px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            background: #2563EB;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        
+        .nav-links button:hover {
+            background: #1D4ED8;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        
+        h3 {
+            margin-bottom: 15px;
+            color: #1E3A8A;
+            font-size: 1.6em;
+        }
+        /* About Me layout */
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(to left, #f0f0f0, #ffffff);
+            padding: 20px;
+            border-radius: 15px;
+            gap: 20px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #2563EB;
+        }
+        /* Contact buttons (About Me section) */
+        
+        #profile .contact-buttons a {
+            display: inline-block;
+            width: auto;
+            padding: 10px 20px;
+            margin: 8px 5px 8px 0;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background: #2563EB;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        #profile .contact-buttons a:hover {
+            background: #1D4ED8;
+        }
+        /* Cards container */
+        
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            padding: 12px 15px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .card i {
+            font-size: 1.1em;
+        }
+        
+        .card.social {
+            background: #000;
+        }
+        
+        .card.certificate {
+            background: #10B981;
+        }
+        
+        .card.work {
+            background: #F59E0B;
+        }
+        
+        .card.download {
+            background: #D97706;
+        }
+        
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: 0.6s ease-out;
+        }
+        
+        .card:hover {
+            transform: translateY(-3px) scale(1.03);
+        }
+        
+        .black-section {
+            background: #000;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+        /* Downloads buttons */
+        
+        #cv .cards .card.download,
+        #cv .cards .card.certificate,
+        #work .cards .card.work {
+            display: inline-block;
+            width: auto;
+            padding: 10px 20px;
+            margin: 5px 5px 5px 0;
+            text-align: center;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            background: #2563EB;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        #cv .cards .card.download:hover,
+        #cv .cards .card.certificate:hover,
+        #work .cards .card.work:hover {
+            background: #1D4ED8;
+        }
+        /* Lists for Education, Skills, Experience */
+        
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        /* Forms */
+        
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        form button {
+            padding: 12px 20px;
+            background: #2563EB;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        form button:hover {
+            background: #1D4ED8;
+        }
+        /* Responsive */
+        
+        @media(max-width:768px) {
+            .sidebar {
+                width: 200px;
+                padding: 15px;
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-photo {
+                margin-top: 20px;
+            }
+        }
+    </style>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        emailjs.init("Ho2BVeFVSQhS-BZrr"); // EmailJS init
+    </script>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>Wangila Walubengo</h2>
+        <input type="text" id="searchInput" placeholder="Search...">
+        <div class="nav-links">
+            <button onclick="scrollToSection('profile')">Profile</button>
+            <button onclick="scrollToSection('education')">Education</button>
+            <button onclick="scrollToSection('skills')">Skills</button>
+            <button onclick="scrollToSection('experience')">Experience</button>
+            <button onclick="scrollToSection('social')">Social Media</button>
+            <button onclick="scrollToSection('cv')">CV & Certificates</button>
+            <button onclick="scrollToSection('contact')">Contact</button>
+            <button onclick="scrollToSection('work')">My Work</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+
+        <!-- Profile / About Me -->
+        <div id="profile" class="section about-container">
+            <div class="about-text">
+                <h3>About Me</h3>
+                <p>I am Derick Walubengo, a dedicated and results-driven web developer and designer with a passion for creating visually appealing, user-friendly, and high-performance digital experiences. With a strong foundation in front-end and back-end
+                    technologies, including HTML, CSS, JavaScript, React, Python, and Flask, I thrive at transforming complex ideas into functional, interactive, and responsive web applications. Beyond technical proficiency, I bring a keen eye for design
+                    and usability, ensuring that every project I work on is not only functional but also aesthetically engaging and accessible to all users. I am highly motivated by innovation and continuous learning, constantly staying up-to-date with
+                    emerging technologies and industry best practices to deliver cutting-edge solutions. Whether working independently or collaborating within a team, I approach each project with meticulous attention to detail, creativity, and a commitment
+                    to excellence. My ultimate goal is to build digital products that not only meet client objectives but also enhance user experiences, drive engagement, and make a meaningful impact in the digital space..</p>
+                <div class="contact-buttons">
+                    <a href="tel:+254748091915"><i class="fas fa-phone"></i> Call Me</a>
+                    <a href="sms:+254748091915"><i class="fas fa-sms"></i> Text Me</a>
+                    <a href="https://wa.me/254748091915" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="https://facebook.com/YOUR_PROFILE" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="https://twitter.com/YOUR_PROFILE" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                </div>
+            </div>
+            <img src="images/20241222_174353 (1).jpg" alt="Profile Photo" class="profile-photo">
+        </div>
+
+        <!-- Education -->
+        <div id="education" class="section">
+            <h3>Education</h3>
+            <ul>
+                <li>BSc Computer Science –University Of Embu</li>
+                <li>High School – St Kizito Mayanja High School</li>
+            </ul>
+        </div>
+
+        <!-- Skills -->
+        <div id="skills" class="section">
+            <h3>Skills</h3>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>Bootstrap</li>
+                <li>Python</li>
+                <li>Flask</li>
+                <li>UI/UX Design</li>
+            </ul>
+        </div>
+
+        <!-- Experience -->
+        <div id="experience" class="section">
+            <h3>Experience</h3>
+            <ul>
+                <li>Web Developer Intern – Warl Dtech Company (2023)</li>
+                <li>Freelance Web Projects – Various Clients</li>
+            </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div id="social" class="section black-section">
+            <h3>Social Media</h3>
+            <div class="cards">
+                <div class="card social"><i class="fab fa-facebook-f"></i> <a href="https://facebook.com/YOUR_PROFILE" target="_blank" style="color:white;text-decoration:none;">Facebook</a></div>
+                <div class="card social"><i class="fab fa-twitter"></i> <a href="https://twitter.com/YOUR_PROFILE" target="_blank" style="color:white;text-decoration:none;">Twitter</a></div>
+                <div class="card social"><i class="fab fa-linkedin-in"></i> <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" style="color:white;text-decoration:none;">LinkedIn</a></div>
+            </div>
+        </div>
+
+        <!-- CV & Certificates -->
+        <div id="cv" class="section">
+            <h3>My Certificates & CV</h3>
+            <div class="cards" id="certificateLinks">
+                <div class="card certificate" data-file="certificate1.jpg"><i class="fas fa-file-image"></i> Certificate 1</div>
+                <div class="card certificate" data-file="certificate2.jpg"><i class="fas fa-file-image"></i> Certificate 2</div>
+                <div class="card download"><i class="fas fa-file-pdf"></i>
+                    <a href="yourcv.pdf" download style="color:white;text-decoration:none;">Download CV</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div id="contact" class="section black-section">
+            <h3>Contact Me</h3>
+            <form id="contactForm">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="text" name="location" placeholder="Your Location" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+            </form>
+        </div>
+
+        <!-- Work -->
+        <div id="work" class="section">
+            <h3>My Work / Portfolio</h3>
+            <div class="cards" id="workLinks">
+                <div class="card work" data-file="project1.jpg"><i class="fas fa-file-image"></i> Project 1 Image</div>
+                <div class="card work"><i class="fas fa-link"></i> <a href="https://project2.com" target="_blank" style="color:white;text-decoration:none;">Project 2 Link</a></div>
+                <div class="card work" data-file="project3.jpg"><i class="fas fa-file-image"></i> Project 3 Image</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox">
+        <span class="close">&times;</span>
+        <img src="" alt="Preview">
+        <a href="" class="download-btn" download>Download</a>
+    </div>
+
+    <script>
+        // Smooth scroll
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Card animations
+        const cards = document.querySelectorAll('.card');
+
+        function checkCards() {
+            const triggerBottom = window.innerHeight * 0.85;
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                if (cardTop < triggerBottom) card.classList.add('visible');
+            });
+        }
+        window.addEventListener('scroll', checkCards);
+        window.addEventListener('load', checkCards);
+
+        // Highlight search term
+        function highlightSearch(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, `<mark>$1</mark>`);
+        }
+
+        // Live search
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('keyup', function() {
+            const filter = searchInput.value.toLowerCase();
+            document.querySelectorAll('.section').forEach(section => {
+                const text = section.innerText.toLowerCase();
+                if (text.includes(filter)) {
+                    section.style.display = "block";
+                    section.innerHTML = highlightSearch(section.innerHTML, filter);
+                } else section.style.display = "none";
+            });
+        });
+
+        // EmailJS
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            emailjs.sendForm('service_incorrect', 'template_7b6rra6', this, 'Ho2BVeFVSQhS-BZrr').then(() => {
+                alert('Message sent successfully!');
+                this.reset();
+            }, err => {
+                alert('Oops! Something went wrong. ' + JSON.stringify(err));
+            });
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const lightboxDownload = lightbox.querySelector('.download-btn');
+        const closeBtn = lightbox.querySelector('.close');
+        document.querySelectorAll('.card[data-file]').forEach(card => {
+            card.addEventListener('click', () => {
+                const file = card.getAttribute('data-file');
+                lightboxImg.src = file;
+                lightboxDownload.href = file;
+                lightbox.style.display = 'flex';
+            });
+        });
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) lightbox.style.display = 'none';
+        });
+    </script>
+
+</body>
+
+</html>
