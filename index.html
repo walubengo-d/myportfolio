@@ -7,14 +7,20 @@
     <title>Derick Walubengo | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        emailjs.init("Ho2BVeFVSQhS-BZrr");
+    </script>
     <style>
+        /* --- BASE STYLES --- */
+        
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Roboto', sans-serif;
         }
-
+        
         body {
             display: flex;
             min-height: 100vh;
@@ -22,8 +28,12 @@
             color: #333;
             scroll-behavior: smooth;
         }
-
-        /* Sidebar */
+        
+        a {
+            text-decoration: none;
+        }
+        /* --- SIDEBAR --- */
+        
         .sidebar {
             width: 250px;
             background: #1E3A8A;
@@ -32,26 +42,28 @@
             display: flex;
             flex-direction: column;
             padding: 20px;
+            transition: all 0.3s;
         }
-
+        
         .sidebar h2 {
             text-align: center;
             margin-bottom: 20px;
             font-size: 1.8em;
         }
-
+        
         .sidebar input[type="text"] {
             padding: 8px;
             border-radius: 5px;
             border: none;
             margin-bottom: 20px;
+            width: 100%;
         }
-
+        
         .nav-links {
             display: flex;
             flex-direction: column;
         }
-
+        
         .nav-links button {
             padding: 12px;
             margin: 5px 0;
@@ -63,24 +75,25 @@
             font-weight: bold;
             transition: 0.3s;
         }
-
+        
         .nav-links button:hover {
             background: #1D4ED8;
         }
-
+        /* --- MAIN CONTENT --- */
+        
         .main-content {
             flex: 1;
             padding: 40px;
             overflow-y: auto;
         }
-
+        
         h3 {
             margin-bottom: 15px;
             color: #1E3A8A;
             font-size: 1.6em;
         }
-
-        /* About Me layout */
+        /* --- ABOUT ME --- */
+        
         .about-container {
             display: flex;
             align-items: center;
@@ -89,12 +102,14 @@
             padding: 20px;
             border-radius: 15px;
             gap: 20px;
+            flex-wrap: wrap;
         }
-
+        
         .about-text {
             flex: 1;
+            min-width: 250px;
         }
-
+        
         .profile-photo {
             width: 200px;
             height: 200px;
@@ -102,80 +117,105 @@
             object-fit: cover;
             border: 4px solid #2563EB;
         }
-
-        /* Contact buttons (About Me section) */
+        /* --- CONTACT BUTTONS --- */
+        
         #profile .contact-buttons a {
             display: inline-block;
             width: auto;
-            padding: 10px 15px;
+            padding: 8px 15px;
             margin: 5px 5px 5px 0;
             text-align: center;
-            text-decoration: none;
             color: white;
             background: #2563EB;
             border-radius: 5px;
             font-weight: bold;
-            cursor: pointer;
             transition: 0.3s;
         }
-
+        
         #profile .contact-buttons a:hover {
             background: #1D4ED8;
         }
-
-        /* Cards container */
+        /* --- CARDS --- */
+        
         .cards {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            flex-direction: column;
+            gap: 8px;
             margin-bottom: 30px;
         }
-
+        
         .card {
             padding: 12px 15px;
             border-radius: 10px;
             color: white;
             font-weight: bold;
-            transition: 0.3s;
             display: flex;
             align-items: center;
             gap: 10px;
             opacity: 0;
             transform: translateY(20px);
-            min-width: 150px;
-            flex: 1 1 auto;
+            transition: 0.6s ease-out;
+            cursor: pointer;
         }
-
-        .card i {
-            font-size: 1.1em;
-        }
-
-        .card.social {
-            background: #000;
-        }
-
-        .card.certificate {
-            background: #10B981;
-        }
-
-        .card.work {
-            background: #F59E0B;
-        }
-
-        .card.download {
-            background: #D97706;
-        }
-
+        
         .card.visible {
             opacity: 1;
             transform: translateY(0);
-            transition: 0.6s ease-out;
         }
-
-        .card:hover {
-            transform: translateY(-3px) scale(1.03);
+        
+        .card.social {
+            background: #000;
         }
-
+        
+        .card.certificate {
+            background: #10B981;
+        }
+        
+        .card.work {
+            background: #F59E0B;
+        }
+        
+        .card.download {
+            background: #D97706;
+        }
+        /* --- LISTS --- */
+        
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        /* --- FORMS --- */
+        
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        form button {
+            padding: 12px 20px;
+            background: #2563EB;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        form button:hover {
+            background: #1D4ED8;
+        }
+        /* --- BLACK SECTIONS --- */
+        
         .black-section {
             background: #000;
             color: #fff;
@@ -183,8 +223,8 @@
             border-radius: 15px;
             margin-bottom: 40px;
         }
-
-        /* Downloads buttons */
+        /* --- DOWNLOAD BUTTONS --- */
+        
         #cv .cards .card.download,
         #cv .cards .card.certificate,
         #work .cards .card.work {
@@ -196,163 +236,144 @@
             color: white;
             border-radius: 5px;
             font-weight: bold;
-            background: #2563EB;
             text-decoration: none;
             cursor: pointer;
         }
-
+        
         #cv .cards .card.download:hover,
         #cv .cards .card.certificate:hover,
         #work .cards .card.work:hover {
             background: #1D4ED8;
         }
-
-        /* Lists for Education, Skills, Experience */
-        ul {
-            list-style-type: disc;
-            margin-left: 20px;
-            margin-bottom: 20px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        /* Forms */
-        form input,
-        form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        form button {
-            padding: 12px 20px;
-            background: #2563EB;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        form button:hover {
-            background: #1D4ED8;
-        }
-
-        /* Lightbox */
-        #lightbox {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        #lightbox img {
-            max-width: 90%;
-            max-height: 70%;
-            margin-bottom: 20px;
-        }
-
-        #lightbox .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-        }
-
-        #lightbox .download-btn {
-            padding: 10px 20px;
-            background: #2563EB;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        #lightbox .download-btn:hover {
-            background: #1D4ED8;
-        }
-
-        /* Responsive */
-        @media(max-width:768px) {
-            body {
-                flex-direction: column;
-            }
-
+        /* --- RESPONSIVE --- */
+        
+        @media(max-width: 1024px) {
             .sidebar {
-                width: 100%;
-                display: flex;
-                flex-direction: row;
-                overflow-x: auto;
-                padding: 10px;
+                width: 200px;
             }
-
-            .sidebar h2 {
-                font-size: 1.2em;
-            }
-
-            .sidebar input[type="text"] {
-                flex: 1;
-                margin: 0 10px;
-            }
-
-            .nav-links {
-                flex-direction: row;
-                gap: 5px;
-                overflow-x: auto;
-            }
-
-            .nav-links button {
-                flex: 0 0 auto;
-                padding: 8px 10px;
-                font-size: 0.9em;
-            }
-
             .main-content {
-                padding: 15px;
+                padding: 20px;
             }
-
             .about-container {
                 flex-direction: column;
                 text-align: center;
             }
-
             .profile-photo {
                 margin-top: 20px;
+                width: 150px;
+                height: 150px;
             }
-
-            .cards {
-                flex-direction: column;
-            }
-
-            .card {
-                width: 100%;
+            #profile .contact-buttons a,
+            #cv .cards .card,
+            #work .cards .card {
+                width: 90%;
+                margin: 5px auto;
             }
         }
+        
+        @media(max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                overflow-x: auto;
+                padding: 10px;
+                justify-content: space-around;
+            }
+            .nav-links {
+                flex-direction: row;
+                gap: 5px;
+            }
+            .nav-links button {
+                padding: 8px 10px;
+                font-size: 12px;
+                white-space: nowrap;
+            }
+            .main-content {
+                padding: 15px;
+            }
+            .about-container {
+                padding: 15px;
+            }
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        
+        @media(max-width: 480px) {
+            h3 {
+                font-size: 1.2rem;
+            }
+            p,
+            li {
+                font-size: 13px;
+            }
+            .profile-photo {
+                width: 100px;
+                height: 100px;
+            }
+            #profile .contact-buttons a,
+            #cv .cards .card,
+            #work .cards .card {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+        /* --- LIGHTBOX --- */
+        
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+        }
+        
+        #lightbox img {
+            max-width: 90%;
+            max-height: 70%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        #lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        #lightbox .download-btn {
+            padding: 10px 15px;
+            background: #2563EB;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        #lightbox .download-btn:hover {
+            background: #1D4ED8;
+        }
     </style>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        emailjs.init("Ho2BVeFVSQhS-BZrr"); // EmailJS init
-    </script>
 </head>
 
 <body>
 
+    <!-- SIDEBAR -->
     <div class="sidebar">
-        <h2>Derick Walubengo</h2>
+        <h2>Wangila Walubengo</h2>
         <input type="text" id="searchInput" placeholder="Search...">
         <div class="nav-links">
             <button onclick="scrollToSection('profile')">Profile</button>
@@ -368,15 +389,14 @@
 
     <div class="main-content">
 
-        <!-- Profile / About Me -->
+        <!-- ABOUT ME -->
         <div id="profile" class="section about-container">
             <div class="about-text">
                 <h3>About Me</h3>
-                <p>I am Derick Walubengo, a dedicated and results-driven web developer and designer with a passion for creating visually appealing, user-friendly, and high-performance digital experiences. With a strong foundation in front-end and back-end
-                    technologies, including HTML, CSS, JavaScript, React, Python, and Flask, I thrive at transforming complex ideas into functional, interactive, and responsive web applications. Beyond technical proficiency, I bring a keen eye for design
-                    and usability, ensuring that every project I work on is not only functional but also aesthetically engaging and accessible to all users. I am highly motivated by innovation and continuous learning, constantly staying up-to-date with
-                    emerging technologies and industry best practices to deliver cutting-edge solutions. Whether working independently or collaborating within a team, I approach each project with meticulous attention to detail, creativity, and a commitment
-                    to excellence. My ultimate goal is to build digital products that not only meet client objectives but also enhance user experiences, drive engagement, and make a meaningful impact in the digital space.</p>
+                <p>I am Derick Walubengo, a dedicated and results-driven web developer and designer with a passion for creating visually appealing, user-friendly, and high-performance digital experiences. With strong front-end and back-end skills in HTML,
+                    CSS, JavaScript, React, Python, and Flask, I transform complex ideas into functional, interactive web apps. I combine technical proficiency with design sensibility, creating projects that are aesthetically engaging and accessible.
+                    Motivated by innovation and continuous learning, I stay updated with emerging technologies. I approach each project with attention to detail, creativity, and commitment, aiming to deliver digital products that enhance user experience,
+                    engagement, and impact.</p>
                 <div class="contact-buttons">
                     <a href="tel:+254748091915"><i class="fas fa-phone"></i> Call Me</a>
                     <a href="sms:+254748091915"><i class="fas fa-sms"></i> Text Me</a>
@@ -386,10 +406,10 @@
                     <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
                 </div>
             </div>
-            <img src="images/profile.jpg" alt="Profile Photo" class="profile-photo">
+            <img src="images/20241222_174353 (1).jpg" alt="Profile Photo" class="profile-photo">
         </div>
 
-        <!-- Education -->
+        <!-- EDUCATION -->
         <div id="education" class="section">
             <h3>Education</h3>
             <ul>
@@ -398,7 +418,7 @@
             </ul>
         </div>
 
-        <!-- Skills -->
+        <!-- SKILLS -->
         <div id="skills" class="section">
             <h3>Skills</h3>
             <ul>
@@ -413,7 +433,7 @@
             </ul>
         </div>
 
-        <!-- Experience -->
+        <!-- EXPERIENCE -->
         <div id="experience" class="section">
             <h3>Experience</h3>
             <ul>
@@ -422,29 +442,27 @@
             </ul>
         </div>
 
-        <!-- Social Media -->
+        <!-- SOCIAL MEDIA -->
         <div id="social" class="section black-section">
             <h3>Social Media</h3>
             <div class="cards">
-                <div class="card social"><i class="fab fa-facebook-f"></i> <a href="https://facebook.com/YOUR_PROFILE" target="_blank" style="color:white;text-decoration:none;">Facebook</a></div>
-                <div class="card social"><i class="fab fa-twitter"></i> <a href="https://twitter.com/YOUR_PROFILE" target="_blank" style="color:white;text-decoration:none;">Twitter</a></div>
-                <div class="card social"><i class="fab fa-linkedin-in"></i> <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" style="color:white;text-decoration:none;">LinkedIn</a></div>
+                <div class="card social"><i class="fab fa-facebook-f"></i> <a href="https://facebook.com/YOUR_PROFILE" target="_blank" style="color:white;">Facebook</a></div>
+                <div class="card social"><i class="fab fa-twitter"></i> <a href="https://twitter.com/YOUR_PROFILE" target="_blank" style="color:white;">Twitter</a></div>
+                <div class="card social"><i class="fab fa-linkedin-in"></i> <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank" style="color:white;">LinkedIn</a></div>
             </div>
         </div>
 
-        <!-- CV & Certificates -->
+        <!-- CV & CERTIFICATES -->
         <div id="cv" class="section">
             <h3>My Certificates & CV</h3>
             <div class="cards" id="certificateLinks">
                 <div class="card certificate" data-file="certificate1.jpg"><i class="fas fa-file-image"></i> Certificate 1</div>
                 <div class="card certificate" data-file="certificate2.jpg"><i class="fas fa-file-image"></i> Certificate 2</div>
-                <div class="card download"><i class="fas fa-file-pdf"></i>
-                    <a href="yourcv.pdf" download style="color:white;text-decoration:none;">Download CV</a>
-                </div>
+                <div class="card download"><i class="fas fa-file-pdf"></i> <a href="yourcv.pdf" download style="color:white;">Download CV</a></div>
             </div>
         </div>
 
-        <!-- Contact -->
+        <!-- CONTACT FORM -->
         <div id="contact" class="section black-section">
             <h3>Contact Me</h3>
             <form id="contactForm">
@@ -456,19 +474,19 @@
             </form>
         </div>
 
-        <!-- Work -->
+        <!-- WORK -->
         <div id="work" class="section">
             <h3>My Work / Portfolio</h3>
             <div class="cards" id="workLinks">
                 <div class="card work" data-file="project1.jpg"><i class="fas fa-file-image"></i> Project 1 Image</div>
-                <div class="card work"><i class="fas fa-link"></i> <a href="https://project2.com" target="_blank" style="color:white;text-decoration:none;">Project 2 Link</a></div>
+                <div class="card work"><i class="fas fa-link"></i> <a href="https://project2.com" target="_blank" style="color:white;">Project 2 Link</a></div>
                 <div class="card work" data-file="project3.jpg"><i class="fas fa-file-image"></i> Project 3 Image</div>
             </div>
         </div>
 
     </div>
 
-    <!-- Lightbox Modal -->
+    <!-- LIGHTBOX -->
     <div id="lightbox">
         <span class="close">&times;</span>
         <img src="" alt="Preview">
@@ -476,14 +494,14 @@
     </div>
 
     <script>
-        // Smooth scroll
+        // SMOOTH SCROLL
         function scrollToSection(id) {
             document.getElementById(id).scrollIntoView({
                 behavior: 'smooth'
             });
         }
 
-        // Card animations
+        // CARD ANIMATION
         const cards = document.querySelectorAll('.card');
 
         function checkCards() {
@@ -496,15 +514,13 @@
         window.addEventListener('scroll', checkCards);
         window.addEventListener('load', checkCards);
 
-        // Highlight search term
+        // HIGHLIGHT SEARCH
         function highlightSearch(text, query) {
             const regex = new RegExp(`(${query})`, 'gi');
             return text.replace(regex, `<mark>$1</mark>`);
         }
-
-        // Live search
         const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('keyup', function () {
+        searchInput.addEventListener('keyup', function() {
             const filter = searchInput.value.toLowerCase();
             document.querySelectorAll('.section').forEach(section => {
                 const text = section.innerText.toLowerCase();
@@ -515,8 +531,8 @@
             });
         });
 
-        // EmailJS
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
+        // EMAILJS
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             emailjs.sendForm('service_incorrect', 'template_7b6rra6', this, 'Ho2BVeFVSQhS-BZrr').then(() => {
                 alert('Message sent successfully!');
@@ -526,7 +542,7 @@
             });
         });
 
-        // Lightbox functionality
+        // LIGHTBOX FUNCTIONALITY
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = lightbox.querySelector('img');
         const lightboxDownload = lightbox.querySelector('.download-btn');
@@ -542,7 +558,7 @@
         closeBtn.addEventListener('click', () => {
             lightbox.style.display = 'none';
         });
-        lightbox.addEventListener('click', (e) => {
+        lightbox.addEventListener('click', e => {
             if (e.target === lightbox) lightbox.style.display = 'none';
         });
     </script>
