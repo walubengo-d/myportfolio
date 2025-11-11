@@ -1,4 +1,4 @@
-# myportfolio
+
 # 🌐 Derick Walubengo — Personal Portfolio Website
 
 This is my **personal portfolio website**, designed and developed to showcase my skills, experience, projects, and professional background as a web developer and designer. The site features a modern, responsive interface, interactive animations, and dynamic content to give visitors a smooth and engaging experience.
